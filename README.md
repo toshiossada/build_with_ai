@@ -18,36 +18,36 @@ https://gist.github.com/toshiossada/c961c39e189b1ea427c1beea157b1fe1
 
 ---
 
-### Gist 3: [Nome Descritivo]
+### Criando a Home Page
 
 https://gist.github.com/toshiossada/070965bbb08439bd51d7a461559312eb
 
 ---
 
-### Gist 4: [Nome Descritivo]
+### Variaveis de controle
 
 https://gist.github.com/toshiossada/287fd20b7b957b1afa27045ff1ca3eb4
 
 ---
 
-### Gist 5: [Nome Descritivo]
+### Registrando o gemini
 
 https://gist.github.com/toshiossada/b57874b6401cb9ec89bf56cc62e3f256
 
 ---
 
-### Gist 6: [Nome Descritivo]
+### Gist 6: Caixa de Texto
 
-https://gist.github.com/toshiossada/**5096843390ffab3f15e59b7c3b6c00b2
+https://gist.github.com/toshiossada/5096843390ffab3f15e59b7c3b6c00b2
 
 ---
 
-### Gist 7: [Nome Descritivo]
+### Gist 7: Exibindo respostas
 
 https://gist.github.com/toshiossada/9ea68fba005dd988058b4557908695d3
 
 ---
 
-### Gist 8: [Nome Descritivo]
+### Gist 8: Projeto final
 
 https://gist.github.com/toshiossada/dfcfcba6b45bf1518b049ca373fc14c0

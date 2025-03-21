@@ -1,8 +1,9 @@
-# build_with_ai
+# Build With AI
 
-A new Flutter project.
+![image](https://github.com/user-attachments/assets/1518cd1d-51b1-43d9-aa73-2cb52d13f2b8)
 
-## Getting Started
+
+## Passo a passo
 
 This project contains several code snippets related to its functionality.  Here they are, embedded for easy viewing:
 

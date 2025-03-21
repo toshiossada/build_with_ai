@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     gemini = GenerativeModel(
       model: 'gemini-1.5-pro',
-      apiKey: 'AIzaSyBJna-eE3O7zvsNixuPOP-4UminA6cYm0s',
+      apiKey: const String.fromEnvironment('API_KEY'),
     );
   }
 

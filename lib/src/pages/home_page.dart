@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
     gemini = GenerativeModel(
       model: 'gemini-2.0-flash',
       apiKey: 'AIzaSyAnBqmyCGDvoOpUVyarIj5_qGFvOOC6nFs',
-      // apiKey: const String.fromEnvironment('API_KEY'),
       systemInstruction: Content.system(prompt),
       tools: geminiTools.tools,
     );
@@ -97,8 +96,6 @@ class _HomePageState extends State<HomePage> {
                     });
                     txtController.clear();
 
-                    // final content = [Content.text(question)];
-                    // final response = await gemini.generateContent(content);
                     final response =
                         await chatSession.sendMessage(Content.text(question));
 

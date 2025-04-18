@@ -1,53 +1,191 @@
 # Build With AI
 
-![image](https://github.com/user-attachments/assets/1518cd1d-51b1-43d9-aa73-2cb52d13f2b8)
+![image](https://github-production-user-asset-6210df.s3.amazonaws.com/2637049/425592305-1518cd1d-51b1-43d9-aa73-2cb52d13f2b8.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250418%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250418T234953Z&X-Amz-Expires=300&X-Amz-Signature=f671082ec0fab76c0cfb1bf954b1c6eac2785015ea29d7b2722a936ceb8aaf9d&X-Amz-SignedHeaders=host)
 
-## Passo a passo
+## 1 - Inicie o projeto
 
----
+```dart
+import 'package:build_with_ai/src/app_widget.dart';
+import 'package:flutter/material.dart';
 
-### Inicializando App Flutter
+void main() {
+  runApp(const AppWidget());
+}
+```
 
-https://gist.github.com/toshiossada/0204117d7f900ce9c3292ca0e37c6821
+## 2 - Adicione o widget Principal
 
----
+```dart
+import 'package:flutter/material.dart';
+import 'pages/home_page.dart';
 
-### Criando Material App
+class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
 
-https://gist.github.com/toshiossada/c961c39e189b1ea427c1beea157b1fe1
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const HomePage(),
+    );
+  }
+}
+```
 
----
+## 3 - Crie a HomePage
 
-### Criando a Home Page
+```dart
+import 'package:flutter/material.dart';
 
-https://gist.github.com/toshiossada/070965bbb08439bd51d7a461559312eb
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
----
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-### Variaveis de controle
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chat App'),
+      ),
+      body: Column(
+        children: [],
+      ),
+    );
+  }
+}
+```
 
-https://gist.github.com/toshiossada/287fd20b7b957b1afa27045ff1ca3eb4
+## 4 - Adicione as Variaveis de controle
 
----
+```dart
+class _HomePageState extends State<HomePage> {
+  late final GenerativeModel gemini;
+  late ChatSession chatSession;
+  var initialized = false;
+  var question = '';
+  var answer = '';
+  var isLoading = false;
+  final txtController = TextEditingController();
 
-### Registrando o gemini
+  @override
+  Widget build(BuildContext context) {
+    (...)
+  }
+}
 
-https://gist.github.com/toshiossada/b57874b6401cb9ec89bf56cc62e3f256
+```
 
----
+## 5 - Registrando Gemini
 
-### Gist 6: Caixa de Texto
+```dart
+class _HomePageState extends State<HomePage> {
+  (...)
+  @override
+  void initState() {
+    super.initState();
+    gemini = GenerativeModel(
+      model: 'gemini-2.0-flash',
+      apiKey: 'API_KEY',
+    );
+    chatSession = gemini.startChat();
+    initialized = true;
+    setState((){});
+  }
+  @override
+  Widget build(BuildContext context) {
+   (...)
+  }
+}
 
-https://gist.github.com/toshiossada/5096843390ffab3f15e59b7c3b6c00b2
+```
 
----
+## 6 - Criando Caixa de testo
 
-### Gist 7: Exibindo respostas
+```dart
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Chat App'),
+    ),
+    body: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            controller: txtController,
+            onFieldSubmitted: (text) async {
+              setState(() {
+                question = text;
+                isLoading = true;
+              });
+              txtController.clear();
+              final response = await chatSession.sendMessage(Content.text(question));
+              setState(() {
+                answer = response.text ?? '';
+                isLoading = false;
+              });
+            },
+          ),
+        )
+      ],
+    ),
+  );
+}
+```
 
-https://gist.github.com/toshiossada/9ea68fba005dd988058b4557908695d3
+## 7 - Exibindo Resposta
 
----
+```dart
+@override
+import 'package:flutter/material.dart';
 
-### Gist 8: Projeto final
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Chat App'),
+    ),
+    body: Column(
+      children: [
+        if (!initialized)
+         CircularProgressIndicator()
+        else
+         Expanded(
+           child: SingleChildScrollView(
+              child: Column(
+               children: [
+                 Text(question),
+                 Visibility(
+                  visible: isLoading,
+                  child: const CircularProgressIndicator(),
+                ),
+                Visibility(
+                  visible: !isLoading,
+                  child:
+                      Align(alignment: Alignment.topLeft, child: Text(answer)),
+                ),
+                Visibility(
+                  visible: question.isEmpty && !isLoading,
+                  child: const Center(
+                    child: Text('Faça uma pergunta ao GEMINI!'),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+(...)
+      ],
+    ),
+  );
+}
 
-https://gist.github.com/toshiossada/dfcfcba6b45bf1518b049ca373fc14c0
+```
+
+## Melhorando
+
+[Melhorando](./melhorias.md)

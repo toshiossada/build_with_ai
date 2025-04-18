@@ -1,4 +1,5 @@
 # Melhorando
+![image](https://github.com/user-attachments/assets/9bdc61c3-71aa-43c2-9092-c5d2de89982b)
 
 ## Criar assets/system_prompt.md
 
